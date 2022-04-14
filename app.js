@@ -13,11 +13,11 @@ webix.protoUI({
 	$init: function (config) {
 		const state = config.value || 0
 		config.value = config.states[state]
-		webix.html.addCss(this.$view, "webix_state_" + state)
+		webix.html.addCss(this.$view, "state_" + state)
 
 		this.attachEvent("onItemClick", () => {
 			let state = this.config.state
-			webix.html.removeCss(this.$view, "webix_state_" + (state))
+			webix.html.removeCss(this.$view, "state_" + (state))
 
 			state++
 			if (state > 2) state = 0
@@ -25,7 +25,7 @@ webix.protoUI({
 			this.config.label = this.config.states[state]
 			this.refresh();
 
-			webix.html.addCss(this.$view, "webix_state_" + (state))
+			webix.html.addCss(this.$view, "state_" + (state))
 			this.callEvent("onStateChange", [state])
 		})
 	}
@@ -51,7 +51,9 @@ webix.protoUI({
 		if (!webix.isArray(value))
 			value = [value];
 
-		if (value.length !== 0 && value[0] !== '') {
+		const notEmpty = value.find((index) => index !== '')
+
+		if (value.length !== 0 && notEmpty) {
 			createNewField = value.map(v => ({ view: "text", label: v, name: v }))
 		} else {
 			webix.message({ type: "error", text: "The field value is empty!" });
@@ -66,7 +68,6 @@ webix.protoUI({
 			{
 				cols: [
 					{
-
 						view: "button",
 						width: 150,
 						value: 'Cancel',
@@ -134,7 +135,7 @@ webix.ui({
 		view: "commonForm",
 		id: "myForm",
 		width: 600,
-		fields: ['Fname', 'Lname'],
+		fields: [''],
 		saveBtn: () => alert('Default function was replaced with another function!')
 	}]
 });
