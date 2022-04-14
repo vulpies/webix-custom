@@ -34,7 +34,6 @@ webix.protoUI({
 webix.protoUI({
 	name: "commonForm",
 	defaults: {
-		fields: [],
 		cancelBtn: function () {
 			this.clear()
 			webix.message('Cleared!')
@@ -51,7 +50,7 @@ webix.protoUI({
 		if (!webix.isArray(value))
 			value = [value];
 
-		const notEmpty = value.find((index) => index !== '')
+		const notEmpty = value.find((v) => v !== '')
 
 		if (value.length !== 0 && notEmpty) {
 			createNewField
@@ -62,8 +61,7 @@ webix.protoUI({
 
 		config.rows = [
 			{
-				localId: 'formElements',
-				rows: [...createNewField || '']
+				rows: [...(createNewField ?? [])]
 			},
 			{
 				cols: [
@@ -135,7 +133,7 @@ webix.ui({
 		view: "commonForm",
 		id: "myForm",
 		width: 600,
-		fields: [''],
+		fields: ['sdvin'],
 		saveBtn: () => alert('Default function was replaced with another function!')
 	}]
 });
