@@ -45,8 +45,8 @@ webix.protoUI({
 		}
 	},
 	$init(config) {
-		let createNewField
 		const value = config.fields
+		const createNewField = value.map(v => ({ view: "text", label: v, name: v }))
 
 		if (!webix.isArray(value))
 			value = [value];
@@ -54,7 +54,7 @@ webix.protoUI({
 		const notEmpty = value.find((index) => index !== '')
 
 		if (value.length !== 0 && notEmpty) {
-			createNewField = value.map(v => ({ view: "text", label: v, name: v }))
+			createNewField
 		} else {
 			webix.message({ type: "error", text: "The field value is empty!" });
 		}
