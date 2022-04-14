@@ -36,19 +36,17 @@ webix.protoUI({
 	defaults: {
 		fields: [],
 		cancelBtn: function () {
-			const self = this
-			self.clear()
+			this.clear()
 			webix.message('Cleared!')
 		},
 		saveBtn: function () {
-			const self = this
-			const values = self.getValues()
+			const values = this.getValues()
 			webix.message(JSON.stringify(values), 'info', 1700)
 		}
 	},
 	$init(config) {
 		let createNewField
-		let value = config.fields
+		const value = config.fields
 
 		if (!webix.isArray(value))
 			value = [value];
