@@ -1,0 +1,16 @@
+.webix_state_0.webix_el_button button {
+    background: #78f473cf !important;
+    color: #000 !important;
+}
+.webix_state_1.webix_el_button button {
+    background: #da2400 !important;
+    color: #fff !important;
+}
+.webix_state_2.webix_el_button button {
+    background: #ffcb2e !important;
+    color: #000 !important;
+}
+
+button {
+    border-radius: 7px !important;
+}
