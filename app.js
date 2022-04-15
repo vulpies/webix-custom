@@ -44,22 +44,7 @@ webix.protoUI({
 		}
 	},
 	$init(config) {
-		const value = config.fields
-		let createNewField
-
-		if (!webix.isArray(value))
-			value = [value];
-
-		const notEmpty = value.filter((v) => v !== '')
-
-		console.log(notEmpty)
-
-		if (value.length !== 0 && notEmpty.length !== 0) {
-			createNewField = value.map(v => ({ view: "text", label: v, name: v }))
-		} else {
-			webix.message({ type: "error", text: "The field value is empty!" });
-		}
-
+		let createNewField = this.generateFormFields(config)
 
 		config.rows = [
 			{
@@ -89,6 +74,23 @@ webix.protoUI({
 			}
 		]
 	},
+
+	generateFormFields(config) {
+		let newField = []
+		let value = config.fields
+
+		if (!webix.isArray(value))
+			value = [value];
+		const notEmpty = value.filter((v) => v !== '')
+
+
+		if (value.length !== 0 && notEmpty.length !== 0) {
+			newField = value.map(v => ({ view: "text", label: v, name: v }))
+		} else {
+			webix.message({ type: "error", text: "The field value is empty!" });
+		}
+		return newField
+	}
 
 
 }, webix.ui.form)
@@ -135,7 +137,7 @@ webix.ui({
 		view: "commonForm",
 		id: "myForm",
 		width: 600,
-		fields: ['vsv', 'sdv'],
+		fields: ['vd'],
 		saveBtn: () => alert('Default function was replaced with another function!')
 	}]
 });
